@@ -114,10 +114,10 @@ func UpdatePerson(w http.ResponseWriter, r *http.Request) {
     // The temporary ID is defined outside of the for loop because it will be used by two different loops    
     tmpID, _ := strconv.Atoi(params["id"])
     // The for loop checks the person list
-    for _, item := range people {
+    for tmpIndex, item := range people {
         // If a matching ID is found, the index integer will be set to it's value
         if item.ID == tmpID {
-            index = tmpID
+            index = tmpIndex
             break
         }
     }
