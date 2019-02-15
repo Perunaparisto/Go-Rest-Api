@@ -130,36 +130,24 @@ func UpdatePerson(w http.ResponseWriter, r *http.Request) {
     if person.Firstname != "" {
         people[index].Firstname = person.Firstname
         fmt.Printf("Changing firstname to: %#v\n", person.Firstname)
-    } else {
-        // If the slot is empty, the value will stay the same
-        fmt.Println("Firstname empty")
     }
 
     // If the lastname slot isn't empty, the lastname will be set to the given string
     if person.Lastname != "" {
         people[index].Lastname = person.Lastname
         fmt.Printf("Changing lastname to: %#v\n", person.Lastname)
-    } else {
-        // If the slot is empty, the value will stay the same
-        fmt.Println("Lastname empty")
     }
 
     // If the city slot isn't empty, the city will be set to the given string
     if person.Address.City != "" {
         people[index].Address.City = person.Address.City
         fmt.Printf("Changing city to: %#v\n", person.Address.City)
-    } else {
-        // If the slot is empty, the value will stay the same
-        fmt.Println("City empty")
     }
 
     // If the state slot isn't empty, the state will be set to the given string
     if person.Address.State != "" {
         people[index].Address.State = person.Address.State
         fmt.Printf("Changing state to: %#v\n", person.Address.State)
-    } else {
-        // If the slot is empty, the value will stay the same
-        fmt.Println("State empty")
     }
     
     json.NewEncoder(w).Encode(people)
@@ -174,9 +162,11 @@ func main() {
     router := mux.NewRouter()
     fmt.Println("Router started");
     // Creating three people for the list
-    people = append(people, Person{ID: 1, Firstname: "____", Lastname: "____", Address: &Address{City: "_____", State: "_____"}})
-    people = append(people, Person{ID: 2, Firstname: "John", Lastname: "Doe", Address: &Address{City: "City X", State: "State X"}})
-    people = append(people, Person{ID: 3, Firstname: "Koko", Lastname: "Doe", Address: &Address{City: "City Z", State: "State Y"}})
+    people = append(people, Person{ID: 1, Firstname: "Aria", Lastname: "Turner", Address: &Address{City: "Fayette", State: "Alabama"}})
+    people = append(people, Person{ID: 2, Firstname: "John", Lastname: "Doe", Address: &Address{City: "Columbus", State: "Ohio"}})
+    people = append(people, Person{ID: 3, Firstname: "Koko", Lastname: "Evans", Address: &Address{City: "Tampa", State: "Florida"}})
+    people = append(people, Person{ID: 2, Firstname: "Joel", Lastname: "Ford", Address: &Address{City: "San Fransisco", State: "California"}})
+    people = append(people, Person{ID: 3, Firstname: "Troy", Lastname: "Carson", Address: &Address{City: "Bellingham", State: "Washington"}})
     fmt.Println("Data defined")
     // Defining the end-points
     router.HandleFunc("/people", GetPeople).Methods("GET")
